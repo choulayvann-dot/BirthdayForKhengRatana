@@ -1,0 +1,1721 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Birthday Surprise 🎂</title>
+
+    <!-- =========================
+         CSS
+    ========================== -->
+
+    <style>
+      /* =========================
+           RESET
+        ========================== */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+
+        min-height: 100vh;
+
+        color: white;
+
+        background:
+          radial-gradient(circle at 20% 20%, #581c87, transparent 30%),
+          radial-gradient(circle at 80% 80%, #be185d, transparent 30%),
+          linear-gradient(135deg, #08000f, #17001f, #08000f);
+
+        overflow-x: hidden;
+      }
+
+      /* =========================
+           COMMON
+        ========================== */
+
+      .hidden {
+        display: none !important;
+      }
+
+      button {
+        font-family: inherit;
+      }
+
+      /* =========================
+           LOGIN
+        ========================== */
+
+      #loginPage {
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        padding: 20px;
+      }
+
+      .login-card {
+        width: 100%;
+
+        max-width: 430px;
+
+        padding: 40px 30px;
+
+        text-align: center;
+
+        border-radius: 30px;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        backdrop-filter: blur(20px);
+
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+
+        animation: loginAppear 1s ease;
+      }
+
+      .login-cake {
+        font-size: 75px;
+
+        margin-bottom: 15px;
+
+        animation: float 2s infinite ease-in-out;
+      }
+
+      .login-card h1 {
+        font-size: 34px;
+
+        margin-bottom: 10px;
+
+        background: linear-gradient(90deg, #f9a8d4, #c084fc, #93c5fd);
+
+        -webkit-background-clip: text;
+
+        color: transparent;
+      }
+
+      .login-card p {
+        color: #d1d5db;
+
+        line-height: 1.6;
+
+        margin-bottom: 30px;
+      }
+
+      /* =========================
+           INPUT
+        ========================== */
+
+      .input-group {
+        text-align: left;
+
+        margin-bottom: 20px;
+      }
+
+      .input-group label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: #f9a8d4;
+
+        font-size: 14px;
+      }
+
+      .input-group input {
+        width: 100%;
+
+        padding: 15px;
+
+        border-radius: 13px;
+
+        outline: none;
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        background: rgba(255, 255, 255, 0.08);
+
+        color: white;
+
+        font-size: 16px;
+      }
+
+      .input-group input:focus {
+        border-color: #ec4899;
+
+        box-shadow: 0 0 20px rgba(236, 72, 153, 0.25);
+      }
+
+      .input-group input::placeholder {
+        color: #9ca3af;
+      }
+
+      /* =========================
+           LOGIN BUTTON
+        ========================== */
+
+      #loginBtn {
+        width: 100%;
+
+        padding: 15px;
+
+        border: none;
+
+        border-radius: 15px;
+
+        background: linear-gradient(90deg, #ec4899, #8b5cf6);
+
+        color: white;
+
+        font-size: 17px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      #loginBtn:hover {
+        transform: translateY(-3px);
+
+        box-shadow: 0 10px 35px rgba(236, 72, 153, 0.4);
+      }
+
+      #errorMessage {
+        color: #fb7185;
+
+        min-height: 20px;
+
+        margin-bottom: 15px;
+
+        font-size: 14px;
+      }
+
+      /* =========================
+           NAVBAR
+        ========================== */
+
+      .navbar {
+        position: fixed;
+
+        top: 0;
+
+        left: 0;
+
+        width: 100%;
+
+        z-index: 500;
+
+        padding: 15px 5%;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        background: rgba(10, 0, 20, 0.6);
+
+        backdrop-filter: blur(15px);
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo {
+        font-size: 20px;
+
+        font-weight: bold;
+
+        color: #f9a8d4;
+      }
+
+      .nav-buttons {
+        display: flex;
+
+        gap: 10px;
+      }
+
+      .nav-btn {
+        padding: 8px 14px;
+
+        border: none;
+
+        border-radius: 10px;
+
+        background: rgba(255, 255, 255, 0.1);
+
+        color: white;
+
+        cursor: pointer;
+      }
+
+      .nav-btn:hover {
+        background: rgba(236, 72, 153, 0.3);
+      }
+
+      /* =========================
+           HERO
+        ========================== */
+
+      .hero {
+        min-height: 100vh;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        text-align: center;
+
+        padding: 100px 20px 50px;
+      }
+
+      .hero-small {
+        color: #f9a8d4;
+
+        font-size: 18px;
+
+        margin-bottom: 15px;
+      }
+
+      .hero h1 {
+        font-size: clamp(50px, 9vw, 100px);
+
+        line-height: 1;
+
+        background: linear-gradient(90deg, #f9a8d4, #c084fc, #93c5fd);
+
+        -webkit-background-clip: text;
+
+        color: transparent;
+
+        margin-bottom: 15px;
+      }
+
+      .hero h2 {
+        font-size: clamp(30px, 5vw, 55px);
+
+        margin-bottom: 30px;
+      }
+
+      /* =========================
+           PHOTO
+        ========================== */
+
+      .photo-frame {
+        width: 230px;
+
+        height: 230px;
+
+        padding: 6px;
+
+        border-radius: 50%;
+
+        background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+
+        box-shadow: 0 0 50px rgba(236, 72, 153, 0.5);
+
+        animation: photoGlow 3s infinite alternate;
+      }
+
+      .photo-frame img {
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+
+        border: 5px solid #100016;
+      }
+
+      .hero-message {
+        max-width: 650px;
+
+        margin-top: 30px;
+
+        color: #d1d5db;
+
+        font-size: 18px;
+
+        line-height: 1.8;
+      }
+
+      /* =========================
+           SECTION
+        ========================== */
+
+      .section {
+        width: 90%;
+
+        max-width: 1100px;
+
+        margin: auto;
+
+        padding: 100px 0;
+
+        text-align: center;
+      }
+
+      .section-title {
+        font-size: clamp(30px, 5vw, 50px);
+
+        margin-bottom: 10px;
+
+        background: linear-gradient(90deg, #f9a8d4, #c084fc);
+
+        -webkit-background-clip: text;
+
+        color: transparent;
+      }
+
+      .section-description {
+        color: #9ca3af;
+
+        margin-bottom: 40px;
+      }
+
+      /* =========================
+           COUNTDOWN
+        ========================== */
+
+      .countdown {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 20px;
+      }
+
+      .time-box {
+        padding: 30px 15px;
+
+        border-radius: 20px;
+
+        background: rgba(255, 255, 255, 0.07);
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+
+        backdrop-filter: blur(15px);
+
+        transition: 0.3s;
+      }
+
+      .time-box:hover {
+        transform: translateY(-8px);
+
+        border-color: #ec4899;
+      }
+
+      .time-box span {
+        display: block;
+
+        font-size: clamp(35px, 5vw, 65px);
+
+        font-weight: bold;
+
+        background: linear-gradient(90deg, #f9a8d4, #c084fc);
+
+        -webkit-background-clip: text;
+
+        color: transparent;
+      }
+
+      .time-box small {
+        color: #9ca3af;
+
+        text-transform: uppercase;
+
+        letter-spacing: 2px;
+      }
+
+      #birthdayToday {
+        margin-top: 35px;
+
+        padding: 25px;
+
+        border-radius: 20px;
+
+        background: rgba(236, 72, 153, 0.15);
+
+        border: 1px solid #ec4899;
+
+        font-size: 25px;
+
+        animation: pulse 1s infinite;
+      }
+
+      /* =========================
+           QUOTE
+        ========================== */
+
+      .quote-card {
+        max-width: 800px;
+
+        margin: 40px auto;
+
+        padding: 50px 30px;
+
+        border-radius: 25px;
+
+        background: rgba(255, 255, 255, 0.07);
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+
+        backdrop-filter: blur(20px);
+      }
+
+      .quote-symbol {
+        font-size: 65px;
+
+        color: #f472b6;
+      }
+
+      #quote {
+        font-size: 22px;
+
+        line-height: 1.8;
+
+        margin: 20px 0;
+
+        transition: opacity 0.5s;
+      }
+
+      /* =========================
+           CANDLE
+        ========================== */
+
+      .candle-container {
+        margin-top: 40px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+      }
+
+      .candle {
+        position: relative;
+
+        width: 70px;
+
+        height: 150px;
+
+        border-radius: 8px;
+
+        background: linear-gradient(90deg, #f9a8d4, #ec4899, #f9a8d4);
+
+        box-shadow: 0 0 30px rgba(236, 72, 153, 0.4);
+      }
+
+      .candle::before {
+        content: "";
+
+        position: absolute;
+
+        top: -18px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 4px;
+
+        height: 20px;
+
+        background: #222;
+      }
+
+      .flame {
+        position: absolute;
+
+        top: -55px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 30px;
+
+        height: 50px;
+
+        background: linear-gradient(orange, yellow);
+
+        border-radius: 50% 50% 50% 50%;
+
+        box-shadow: 0 0 30px orange;
+
+        animation: flame 0.5s infinite alternate;
+      }
+
+      .blown .flame {
+        display: none;
+      }
+
+      #blowBtn {
+        margin-top: 35px;
+
+        padding: 14px 25px;
+
+        border: none;
+
+        border-radius: 30px;
+
+        background: linear-gradient(90deg, #ec4899, #8b5cf6);
+
+        color: white;
+
+        cursor: pointer;
+
+        font-size: 16px;
+      }
+
+      /* =========================
+           TYPING MESSAGE
+        ========================== */
+
+      .typing-card {
+        max-width: 800px;
+
+        margin: auto;
+
+        padding: 40px;
+
+        border-radius: 25px;
+
+        background: rgba(255, 255, 255, 0.07);
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      #typingText {
+        font-size: 24px;
+
+        line-height: 1.8;
+
+        color: #f9a8d4;
+
+        min-height: 100px;
+      }
+
+      /* =========================
+           GALLERY
+        ========================== */
+
+      .gallery {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 20px;
+      }
+
+      .gallery img {
+        width: 100%;
+
+        height: 250px;
+
+        object-fit: cover;
+
+        border-radius: 18px;
+
+        cursor: pointer;
+
+        transition: 0.4s;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.04);
+
+        box-shadow: 0 15px 40px rgba(236, 72, 153, 0.3);
+      }
+
+      /* =========================
+           WISHES
+        ========================== */
+
+      .wishes {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 20px;
+      }
+
+      .wish-card {
+        padding: 35px 25px;
+
+        border-radius: 20px;
+
+        background: rgba(255, 255, 255, 0.06);
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        transition: 0.4s;
+      }
+
+      .wish-card:hover {
+        transform: translateY(-10px);
+
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .wish-card .emoji {
+        font-size: 45px;
+
+        margin-bottom: 15px;
+      }
+
+      .wish-card h3 {
+        margin-bottom: 10px;
+
+        font-size: 22px;
+      }
+
+      .wish-card p {
+        color: #9ca3af;
+
+        line-height: 1.7;
+      }
+
+      /* =========================
+           MUSIC
+        ========================== */
+
+      #musicBtn {
+        padding: 15px 30px;
+
+        border: none;
+
+        border-radius: 30px;
+
+        background: linear-gradient(90deg, #ec4899, #8b5cf6);
+
+        color: white;
+
+        cursor: pointer;
+
+        font-size: 16px;
+
+        font-weight: bold;
+      }
+
+      /* =========================
+           FINAL
+        ========================== */
+
+      .final-section {
+        padding: 120px 20px;
+
+        text-align: center;
+
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .final-cake {
+        font-size: 80px;
+
+        animation: float 2s infinite ease-in-out;
+      }
+
+      .final-section h2 {
+        font-size: 55px;
+
+        margin-top: 20px;
+
+        background: linear-gradient(90deg, #f9a8d4, #c084fc);
+
+        -webkit-background-clip: text;
+
+        color: transparent;
+      }
+
+      .final-section h3 {
+        font-size: 35px;
+
+        margin: 10px 0 20px;
+      }
+
+      .made {
+        margin-top: 40px;
+
+        color: #9ca3af;
+      }
+
+      /* =========================
+           IMAGE MODAL
+        ========================== */
+
+      .modal {
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(0, 0, 0, 0.92);
+
+        display: none;
+
+        justify-content: center;
+
+        align-items: center;
+
+        z-index: 1000;
+
+        padding: 20px;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal img {
+        max-width: 90%;
+
+        max-height: 85vh;
+
+        border-radius: 15px;
+      }
+
+      .close {
+        position: absolute;
+
+        top: 20px;
+
+        right: 30px;
+
+        font-size: 50px;
+
+        cursor: pointer;
+      }
+
+      /* =========================
+           FLOATING HEARTS
+        ========================== */
+
+      .heart {
+        position: fixed;
+
+        bottom: -50px;
+
+        z-index: 2;
+
+        pointer-events: none;
+
+        animation: heartFloat 8s linear forwards;
+      }
+
+      /* =========================
+           FIREWORK
+        ========================== */
+
+      .firework {
+        position: fixed;
+
+        width: 5px;
+
+        height: 5px;
+
+        border-radius: 50%;
+
+        background: white;
+
+        pointer-events: none;
+
+        z-index: 999;
+      }
+
+      /* =========================
+           ANIMATIONS
+        ========================== */
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      @keyframes loginAppear {
+        from {
+          opacity: 0;
+
+          transform: translateY(30px) scale(0.9);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes photoGlow {
+        from {
+          box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+        }
+
+        to {
+          box-shadow: 0 0 70px rgba(139, 92, 246, 0.7);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.03);
+        }
+      }
+
+      @keyframes flame {
+        from {
+          transform: translateX(-50%) scale(1);
+        }
+
+        to {
+          transform: translateX(-50%) scale(1.15);
+        }
+      }
+
+      @keyframes heartFloat {
+        from {
+          transform: translateY(0) rotate(0deg);
+
+          opacity: 0;
+        }
+
+        20% {
+          opacity: 1;
+        }
+
+        to {
+          transform: translateY(-110vh) rotate(360deg);
+
+          opacity: 0;
+        }
+      }
+
+      /* =========================
+           RESPONSIVE
+        ========================== */
+
+      @media (max-width: 768px) {
+        .countdown {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .wishes {
+          grid-template-columns: 1fr;
+        }
+
+        .photo-frame {
+          width: 190px;
+
+          height: 190px;
+        }
+
+        .navbar {
+          padding: 12px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .login-card {
+          padding: 30px 20px;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery img {
+          height: 280px;
+        }
+
+        .hero h1 {
+          font-size: 50px;
+        }
+
+        .quote-card {
+          padding: 35px 20px;
+        }
+
+        #typingText {
+          font-size: 19px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ==================================================
+         LOGIN PAGE
+    =================================================== -->
+
+    <section id="loginPage">
+      <div class="login-card">
+        <div class="login-cake">🎂</div>
+
+        <h1>Birthday Surprise</h1>
+
+        <p>Enter your information to unlock the birthday surprise ❤️</p>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <label> Name </label>
+
+            <input
+              type="text"
+              id="nameInput"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label> Password </label>
+
+            <input
+              type="password"
+              id="passwordInput"
+              placeholder="Enter password"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label> Date of Birth </label>
+
+            <input type="date" id="birthInput" required />
+          </div>
+
+          <div id="errorMessage"></div>
+
+          <button type="submit" id="loginBtn">Unlock My Birthday 🎁</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================================================
+         BIRTHDAY WEBSITE
+    =================================================== -->
+
+    <main id="birthdayPage" class="hidden">
+      <!-- NAVBAR -->
+
+      <nav class="navbar">
+        <div class="logo">🎂 Birthday</div>
+
+        <div class="nav-buttons">
+          <button class="nav-btn" id="englishBtn">English</button>
+
+          <button class="nav-btn" id="khmerBtn">ខ្មែរ</button>
+        </div>
+      </nav>
+
+      <!-- HERO -->
+
+      <section class="hero">
+        <p class="hero-small">✨ A Very Special Day ✨</p>
+
+        <h1 id="heroTitle">Happy Birthday</h1>
+
+        <h2 id="personName">Choulay ❤️</h2>
+
+        <div class="photo-frame">
+          <!--
+                    Replace this image with
+                    your real birthday photo.
+                -->
+
+          <img src="./6.jpg" alt="Birthday Person" />
+        </div>
+
+        <p class="hero-message" id="heroMessage">
+          Today is a beautiful day because someone very special was born. ❤️
+        </p>
+      </section>
+
+      <!-- COUNTDOWN -->
+
+      <section class="section">
+        <h2 class="section-title">🎂 Birthday Countdown</h2>
+
+        <p class="section-description">Counting down to the 14th</p>
+
+        <div class="countdown">
+          <div class="time-box">
+            <span id="days"> 00 </span>
+
+            <small> Days </small>
+          </div>
+
+          <div class="time-box">
+            <span id="hours"> 00 </span>
+
+            <small> Hours </small>
+          </div>
+
+          <div class="time-box">
+            <span id="minutes"> 00 </span>
+
+            <small> Minutes </small>
+          </div>
+
+          <div class="time-box">
+            <span id="seconds"> 00 </span>
+
+            <small> Seconds </small>
+          </div>
+        </div>
+
+        <div id="birthdayToday" class="hidden">
+          🎉 TODAY IS YOUR BIRTHDAY! 🎂❤️
+        </div>
+      </section>
+
+      <!-- QUOTE -->
+
+      <section class="section">
+        <h2 class="section-title">💌 Birthday Quote</h2>
+
+        <div class="quote-card">
+          <div class="quote-symbol">❝</div>
+
+          <p id="quote">
+            May your birthday be filled with happiness, love, beautiful
+            memories, and endless dreams. ✨
+          </p>
+
+          <span> — Birthday Wishes ❤️ </span>
+        </div>
+      </section>
+
+      <!-- CANDLE -->
+
+      <section class="section">
+        <h2 class="section-title">🕯️ Make a Wish</h2>
+
+        <p class="section-description">Close your eyes and make a wish...</p>
+
+        <div class="candle-container">
+          <div class="candle" id="candle">
+            <div class="flame" id="flame"></div>
+          </div>
+
+          <button id="blowBtn">💨 Blow the Candle</button>
+        </div>
+      </section>
+
+      <!-- TYPING MESSAGE -->
+
+      <section class="section">
+        <h2 class="section-title">💖 A Special Message</h2>
+
+        <div class="typing-card">
+          <p id="typingText"></p>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+
+      <section class="section">
+        <h2 class="section-title">📸 Beautiful Memories</h2>
+
+        <p class="section-description">Beautiful moments ❤️</p>
+
+        <div class="gallery">
+          <img
+            src="./e7a4721f-14bb-45f7-9074-7fc02a9ea8dd.jpg"
+            alt="Memory 1"
+            class="gallery-image"
+          />
+
+          <img src="./2.jpg" alt="Memory 2" class="gallery-image" />
+
+          <img
+            src="./bac28835-374d-4920-bb18-4681fb32555b.jpg"
+            alt="Memory 3"
+            class="gallery-image"
+          />
+
+          <img src="./4.jpg" alt="Memory 4" class="gallery-image" />
+
+          <img src="./5.jpg" alt="Memory 5" class="gallery-image" />
+
+          <img
+            src="./234ab9e6-fd38-46e1-8ea5-b79329b4d022.jpg"
+            alt="Memory 6"
+            class="gallery-image"
+          />
+        </div>
+      </section>
+
+      <!-- WISHES -->
+
+      <section class="section">
+        <h2 class="section-title">🌸 Birthday Wishes</h2>
+
+        <div class="wishes">
+          <div class="wish-card">
+            <div class="emoji">✨</div>
+
+            <h3>Dream Big</h3>
+
+            <p>May all your dreams come true and your future be bright.</p>
+          </div>
+
+          <div class="wish-card">
+            <div class="emoji">❤️</div>
+
+            <h3>Stay Happy</h3>
+
+            <p>May your life always be filled with happiness and love.</p>
+          </div>
+
+          <div class="wish-card">
+            <div class="emoji">🌟</div>
+
+            <h3>Keep Shining</h3>
+
+            <p>Keep smiling, keep believing, and keep shining every day.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MUSIC -->
+
+      <section class="section">
+        <h2 class="section-title">🎵 Birthday Music</h2>
+
+        <p class="section-description">Play music for the celebration ❤️</p>
+
+        <button id="musicBtn">▶ Play Music</button>
+
+        <audio id="birthdayMusic">
+          <source src="./birthday.mp3" type="audio/mpeg" />
+        </audio>
+      </section>
+
+      <!-- FINAL -->
+
+      <section class="final-section">
+        <div class="final-cake">🎂</div>
+
+        <h2>Happy Birthday</h2>
+
+        <h3 id="finalName">Choulay ❤️</h3>
+
+        <p>May this new year of your life be your best one yet. ✨</p>
+
+        <p class="made">Made with ❤️ for you</p>
+      </section>
+    </main>
+
+    <!-- IMAGE MODAL -->
+
+    <div class="modal" id="imageModal">
+      <span class="close" id="closeModal"> &times; </span>
+
+      <img id="modalImage" src="" alt="Full Image" />
+    </div>
+
+    <!-- ==================================================
+         JAVASCRIPT
+    =================================================== -->
+
+    <script>
+      /* =================================================
+           1. LOGIN INFORMATION
+        ================================================= */
+
+      const correctName = "Kheng Ratana";
+
+      const correctPassword = "1492008";
+
+      const correctBirthDate = "2008-09-14";
+
+      /* =================================================
+           2. GET ELEMENTS
+        ================================================= */
+
+      const loginPage = document.getElementById("loginPage");
+
+      const birthdayPage = document.getElementById("birthdayPage");
+
+      const loginForm = document.getElementById("loginForm");
+
+      const nameInput = document.getElementById("nameInput");
+
+      const passwordInput = document.getElementById("passwordInput");
+
+      const birthInput = document.getElementById("birthInput");
+
+      const errorMessage = document.getElementById("errorMessage");
+
+      const personName = document.getElementById("personName");
+
+      const finalName = document.getElementById("finalName");
+
+      /* =================================================
+           3. LOGIN
+        ================================================= */
+
+      loginForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+
+        const password = passwordInput.value;
+
+        const birthDate = birthInput.value;
+
+        if (
+          name === correctName &&
+          password === correctPassword &&
+          birthDate === correctBirthDate
+        ) {
+          errorMessage.textContent = "";
+
+          loginPage.classList.add("hidden");
+
+          birthdayPage.classList.remove("hidden");
+
+          personName.textContent = `Happy Birthday ${name} ❤️`;
+
+          finalName.textContent = `${name} ❤️`;
+
+          startTyping();
+
+          createConfetti();
+
+          createHearts();
+        } else {
+          errorMessage.textContent = "❌ Information is incorrect. Try again.";
+        }
+      });
+
+      /* =================================================
+           4. COUNTDOWN
+        ================================================= */
+
+      function getNextBirthday() {
+        const now = new Date();
+
+        const birth = new Date(correctBirthDate);
+
+        const birthMonth = birth.getMonth();
+
+        let birthday = new Date(now.getFullYear(), birthMonth, 14, 0, 0, 0);
+
+        if (birthday <= now) {
+          birthday = new Date(now.getFullYear() + 1, birthMonth, 14, 0, 0, 0);
+        }
+
+        return birthday;
+      }
+
+      function updateCountdown() {
+        const now = new Date();
+
+        const birthday = getNextBirthday();
+
+        const difference = birthday - now;
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+
+        const seconds = Math.floor((difference / 1000) % 60);
+
+        document.getElementById("days").textContent = String(days).padStart(
+          2,
+          "0",
+        );
+
+        document.getElementById("hours").textContent = String(hours).padStart(
+          2,
+          "0",
+        );
+
+        document.getElementById("minutes").textContent = String(
+          minutes,
+        ).padStart(2, "0");
+
+        document.getElementById("seconds").textContent = String(
+          seconds,
+        ).padStart(2, "0");
+
+        checkBirthdayToday();
+      }
+
+      updateCountdown();
+
+      setInterval(updateCountdown, 1000);
+
+      /* =================================================
+           5. CHECK BIRTHDAY TODAY
+        ================================================= */
+
+      function checkBirthdayToday() {
+        const now = new Date();
+
+        const birth = new Date(correctBirthDate);
+
+        if (now.getMonth() === birth.getMonth() && now.getDate() === 14) {
+          document.getElementById("birthdayToday").classList.remove("hidden");
+
+          createFireworks();
+        }
+      }
+
+      /* =================================================
+           6. QUOTES
+        ================================================= */
+
+      const quotes = [
+        "May your birthday be filled with happiness, love, beautiful memories, and endless dreams. ✨",
+
+        "Another year of your life means another year of beautiful memories and new opportunities. ❤️",
+
+        "May every day of your new year be brighter, happier, and more beautiful than the last. 🌸",
+
+        "Keep smiling, keep believing, and keep being the wonderful person you are. 💖",
+
+        "May all your dreams come true and may happiness follow you everywhere. 🎂✨",
+
+        "Your birthday is a new beginning. Make this year unforgettable. 🌟",
+      ];
+
+      let quoteIndex = 0;
+
+      const quoteElement = document.getElementById("quote");
+
+      setInterval(function () {
+        quoteElement.style.opacity = "0";
+
+        setTimeout(function () {
+          quoteIndex++;
+
+          if (quoteIndex >= quotes.length) {
+            quoteIndex = 0;
+          }
+
+          quoteElement.textContent = quotes[quoteIndex];
+
+          quoteElement.style.opacity = "1";
+        }, 500);
+      }, 5000);
+
+      /* =================================================
+           7. CANDLE
+        ================================================= */
+
+      const blowBtn = document.getElementById("blowBtn");
+
+      const candle = document.getElementById("candle");
+
+      blowBtn.addEventListener("click", function () {
+        candle.classList.add("blown");
+
+        blowBtn.textContent = "✨ Wish Made! ✨";
+
+        createFireworks();
+
+        createConfetti();
+      });
+
+      /* =================================================
+           8. TYPING MESSAGE
+        ================================================= */
+
+      const typingMessage =
+        "Happy Birthday! ❤️ May your life be filled with happiness, success, love, good health, and beautiful memories. Never stop dreaming, never stop believing in yourself, and always keep smiling. You deserve all the beautiful things in the world. 🎂✨";
+
+      let typingIndex = 0;
+
+      function startTyping() {
+        const typingText = document.getElementById("typingText");
+
+        typingIndex = 0;
+
+        typingText.textContent = "";
+
+        function type() {
+          if (typingIndex < typingMessage.length) {
+            typingText.textContent += typingMessage[typingIndex];
+
+            typingIndex++;
+
+            setTimeout(type, 45);
+          }
+        }
+
+        type();
+      }
+
+      /* =================================================
+           9. IMAGE MODAL
+        ================================================= */
+
+      const galleryImages = document.querySelectorAll(".gallery-image");
+
+      const imageModal = document.getElementById("imageModal");
+
+      const modalImage = document.getElementById("modalImage");
+
+      const closeModal = document.getElementById("closeModal");
+
+      galleryImages.forEach(function (image) {
+        image.addEventListener("click", function () {
+          modalImage.src = image.src;
+
+          imageModal.classList.add("active");
+        });
+      });
+
+      closeModal.addEventListener("click", function () {
+        imageModal.classList.remove("active");
+      });
+
+      imageModal.addEventListener("click", function (event) {
+        if (event.target === imageModal) {
+          imageModal.classList.remove("active");
+        }
+      });
+
+      /* =================================================
+           10. MUSIC
+        ================================================= */
+
+      const music = document.getElementById("birthdayMusic");
+
+      const musicBtn = document.getElementById("musicBtn");
+
+      musicBtn.addEventListener("click", function () {
+        if (music.paused) {
+          music.play();
+
+          musicBtn.textContent = "⏸ Pause Music";
+        } else {
+          music.pause();
+
+          musicBtn.textContent = "▶ Play Music";
+        }
+      });
+
+      /* =================================================
+           11. CONFETTI
+        ================================================= */
+
+      function createConfetti() {
+        const emojis = ["🎉", "🎊", "✨", "❤️", "💖", "🌟"];
+
+        for (let i = 0; i < 60; i++) {
+          const confetti = document.createElement("div");
+
+          confetti.textContent =
+            emojis[Math.floor(Math.random() * emojis.length)];
+
+          confetti.style.position = "fixed";
+
+          confetti.style.left = Math.random() * 100 + "vw";
+
+          confetti.style.top = "-30px";
+
+          confetti.style.fontSize = Math.random() * 20 + 15 + "px";
+
+          confetti.style.zIndex = "9999";
+
+          confetti.style.pointerEvents = "none";
+
+          document.body.appendChild(confetti);
+
+          const duration = Math.random() * 3000 + 3000;
+
+          confetti.animate(
+            [
+              {
+                transform: "translateY(0) rotate(0deg)",
+
+                opacity: 1,
+              },
+
+              {
+                transform: "translateY(110vh) rotate(720deg)",
+
+                opacity: 0,
+              },
+            ],
+
+            {
+              duration: duration,
+
+              easing: "linear",
+            },
+          );
+
+          setTimeout(function () {
+            confetti.remove();
+          }, duration);
+        }
+      }
+
+      /* =================================================
+           12. FLOATING HEARTS
+        ================================================= */
+
+      function createHearts() {
+        setInterval(function () {
+          const heart = document.createElement("div");
+
+          heart.className = "heart";
+
+          heart.textContent = ["❤️", "💖", "💕", "💗", "💜"][
+            Math.floor(Math.random() * 5)
+          ];
+
+          heart.style.left = Math.random() * 100 + "vw";
+
+          heart.style.fontSize = Math.random() * 20 + 15 + "px";
+
+          heart.style.animationDuration = Math.random() * 5 + 5 + "s";
+
+          document.body.appendChild(heart);
+
+          setTimeout(function () {
+            heart.remove();
+          }, 10000);
+        }, 1000);
+      }
+
+      /* =================================================
+           13. FIREWORKS
+        ================================================= */
+
+      function createFireworks() {
+        for (let i = 0; i < 5; i++) {
+          setTimeout(function () {
+            createFirework();
+          }, i * 600);
+        }
+      }
+
+      function createFirework() {
+        const centerX = Math.random() * window.innerWidth;
+
+        const centerY = Math.random() * window.innerHeight * 0.5;
+
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement("div");
+
+          particle.className = "firework";
+
+          particle.style.left = centerX + "px";
+
+          particle.style.top = centerY + "px";
+
+          document.body.appendChild(particle);
+
+          const angle = Math.random() * Math.PI * 2;
+
+          const distance = Math.random() * 150 + 50;
+
+          const x = Math.cos(angle) * distance;
+
+          const y = Math.sin(angle) * distance;
+
+          particle.animate(
+            [
+              {
+                transform: "translate(0,0)",
+
+                opacity: 1,
+              },
+
+              {
+                transform: `translate(${x}px,${y}px)`,
+
+                opacity: 0,
+              },
+            ],
+
+            {
+              duration: 1200,
+
+              easing: "ease-out",
+            },
+          );
+
+          setTimeout(function () {
+            particle.remove();
+          }, 1200);
+        }
+      }
+
+      /* =================================================
+           14. LANGUAGE SWITCH
+        ================================================= */
+
+      const englishBtn = document.getElementById("englishBtn");
+
+      const khmerBtn = document.getElementById("khmerBtn");
+
+      englishBtn.addEventListener("click", function () {
+        document.getElementById("heroTitle").textContent = "Happy Birthday";
+
+        document.getElementById("heroMessage").textContent =
+          "Today is a beautiful day because someone very special was born. ❤️";
+
+        document.querySelector(".section-description").textContent =
+          "Counting down to the 14th";
+      });
+
+      khmerBtn.addEventListener("click", function () {
+        document.getElementById("heroTitle").textContent = "រីករាយថ្ងៃកំណើត";
+
+        document.getElementById("heroMessage").textContent =
+          "ថ្ងៃនេះជាថ្ងៃដ៏ពិសេស ព្រោះមានមនុស្សម្នាក់ដ៏ពិសេសបានកើតមក។ ❤️";
+
+        document.querySelector(".section-description").textContent =
+          "រាប់ថយក្រោយទៅថ្ងៃទី 14";
+      });
+    </script>
+  </body>
+</html>
